@@ -1,0 +1,22 @@
+.navbar {
+    background-color: #f8f9fa; 
+    padding: 10px 20px; /* Espaciado */
+    display: flex;
+    justify-content: left; 
+    align-items: center; /* Centra los elementos verticalmente */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  .nav-link {
+    color: #333; /* Color de texto */
+    text-decoration: none; /* Quita el subrayado */
+    font-size: 18px;
+    padding: 5px 10px;
+  }
+  
+  .nav-link:hover {
+    color: #007bff; /* Color de texto al pasar el mouse */
+    background-color: #e9ecef; /* Fondo suave al pasar el mouse */
+    border-radius: 5px; /* Bordes redondeados */
+  }
+  

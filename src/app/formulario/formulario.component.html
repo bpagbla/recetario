@@ -1,0 +1,25 @@
+<div class="container form">
+  <div style="text-align: center;" class ="col"><h1>{{title}}</h1></div>
+
+  <form>
+    <label for="plato">Nombre del Plato</label>
+    <input type="text" name="plato" id="plato" required >
+    <br>
+    <br>
+    <div class="form-group">
+      <label for="ingredientes">Ingredientes</label>
+      <input type="text" name="ingredientes" id="ingredientes" required >
+      <label for="cantidad">cantidad</label>
+      <input type="text" name="cantidad" id="cantidad" required >
+    </div>
+    <!-- mirar a ver si se puede hacer que se añadan ingredientes a un array de strings -->
+
+    <br>
+    <br>
+    <label for="prep">Preparación:</label>
+    <textarea name="prep" id="prep" required ></textarea>
+
+    <br><br>
+    <input type="submit" value="Añadir Receta" >
+  </form>
+</div>
