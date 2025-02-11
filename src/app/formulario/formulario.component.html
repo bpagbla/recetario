@@ -1,5 +1,7 @@
 <div class="container form">
-  <div style="text-align: center;" class ="col"><h1>{{title}}</h1></div>
+  <div style="text-align: center;" class="col">
+    <h1>{{title}}</h1>
+  </div>
 
   <form>
     <label for="plato">Nombre del Plato</label>
@@ -7,12 +9,18 @@
     <br>
     <br>
     <div class="form-group">
+
+      <input type="checkbox" id="ing1" name="ing1" value="huevo">
+      <label for="ing1"> Huevo</label><br>
+      <input type="checkbox" id="ing2" name="ing2" value="patata">
+      <label for="ing2"> Patata</label><br>
+
       <label for="ingredientes">Ingredientes</label>
       <input type="text" name="ingredientes" id="ingredientes" required [(ngModel)]="cuadroingredientes">
       <label for="cantidad">cantidad</label>
       <input type="text" name="cantidad" id="cantidad" required [(ngModel)]="cuadrocantidad">
     </div>
-    
+
     <!-- un checkbox en el que te salgan todos los ingredientes que hay en el firebase -->
 
     <br>
