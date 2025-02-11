@@ -9,7 +9,7 @@ import { FormularioComponent } from './formulario/formulario.component';
 
 import {ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { BbddService } from './bbdd.service';
 
 
 
