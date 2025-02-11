@@ -3,24 +3,24 @@
 
   <form>
     <label for="plato">Nombre del Plato</label>
-    <input type="text" name="plato" id="plato" required >
+    <input type="text" name="plato" id="plato" required [(ngModel)]="cuadroplato">
     <br>
     <br>
     <div class="form-group">
       <label for="ingredientes">Ingredientes</label>
-      <input type="text" name="ingredientes" id="ingredientes" required >
+      <input type="text" name="ingredientes" id="ingredientes" required [(ngModel)]="cuadroingredientes">
       <label for="cantidad">cantidad</label>
-      <input type="text" name="cantidad" id="cantidad" required >
+      <input type="text" name="cantidad" id="cantidad" required [(ngModel)]="cuadrocantidad">
     </div>
     
-    <!-- un select en el que te salgan todos los ingredientes que hay en el firebase -->
+    <!-- un checkbox en el que te salgan todos los ingredientes que hay en el firebase -->
 
     <br>
     <br>
     <label for="prep">Preparación:</label>
-    <textarea name="prep" id="prep" required ></textarea>
+    <textarea name="prep" id="prep" required [(ngModel)]="cuadropreparacion"></textarea>
 
     <br><br>
-    <input type="submit" value="Añadir Receta" >
+    <input type="submit" value="Añadir Receta" (click)="incluirReceta()">
   </form>
 </div>

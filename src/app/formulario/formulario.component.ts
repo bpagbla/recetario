@@ -15,13 +15,27 @@ import { BbddService } from '../bbdd.service';
 
 export class FormularioComponent {
 
-  constructor(private bbddService:BbddService){}
+  constructor(private bbddService: BbddService) { }
 
-title = 'Añadir una Receta nueva';
+  title = 'Añadir una Receta nueva';
 
-cuadroplato: string = "";
-cuadroingredientes: string[] = [];
-cuadrocantidad: string[]=[];
-cuadropreparacion: string = "";
+  cuadroplato: string = "";
+  cuadroingredientes: string[] = [];
+  cuadrocantidad: string[] = [];
+  cuadropreparacion: string = "";
+
+  recetas: Receta[] = [];
+
+  async incluirReceta() {
+    let nuevaReceta: Receta = {
+      plato: this.cuadroplato,
+      ingredientes: this.cuadroingredientes,
+      cantidad: this.cuadrocantidad,
+      preparacion: this.cuadropreparacion
+    };
+    this.recetas.push(nuevaReceta);
+    this.bbddService.insertaReceta(nuevaReceta);
+
+  }
 
 }
