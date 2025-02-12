@@ -9,19 +9,24 @@
     <br>
     <br>
     <div class="form-group">
+      <!-- ingredientes -->
+      <div *ngFor="let ing of ingredientes">
+        <input type="checkbox" [id]="ing.nombre" [value]="ing.nombre">
+        <label [for]="ing.nombre"> {{ ing.nombre }}</label>
+      </div>
 
-      <input type="checkbox" id="ing1" name="ing1" value="huevo">
-      <label for="ing1"> Huevo</label><br>
-      <input type="checkbox" id="ing2" name="ing2" value="patata">
-      <label for="ing2"> Patata</label><br>
-
-      <label for="ingredientes">Ingredientes</label>
-      <input type="text" name="ingredientes" id="ingredientes" required [(ngModel)]="cuadroingredientes">
+      <!-- Ingredientes Nuevos -->
+      
+      <div>
+      <input type="text" [(ngModel)]="cuadroNombre" placeholder="Añadir ingrediente..." name="nuevoIngrediente">
+      <button (click)="agregarIngrediente()">+</button>
+    </div>
+     
       <label for="cantidad">cantidad</label>
       <input type="text" name="cantidad" id="cantidad" required [(ngModel)]="cuadrocantidad">
     </div>
 
-    <!-- un checkbox en el que te salgan todos los ingredientes que hay en el firebase -->
+    
 
     <br>
     <br>
