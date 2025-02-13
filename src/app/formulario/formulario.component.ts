@@ -51,6 +51,8 @@ export class FormularioComponent implements OnInit {
       // Inicializar cantidad para ese ingrediente
       this.cantidades[this.cuadroNombre] = '';
 
+      this.cuadroNombre = '';
+
       this.ingredientes.push(nuevoIngrediente);
       this.bbddService.insertaIngrediente(nuevoIngrediente);
     }
