@@ -3,6 +3,7 @@ import { Firestore, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateD
 
 import { Receta } from './interfaces/receta';
 import { Ingrediente } from './interfaces/ingrediente';
+
 import { addDoc } from 'firebase/firestore';
 
 @Injectable({
@@ -13,6 +14,8 @@ export class BbddService {
 
 
   constructor(private firestore: Firestore) { }
+
+  /* INGREDIENTES */
   ingredientes: Ingrediente[] = [];
 
   async getIngredientes() {
@@ -24,7 +27,6 @@ export class BbddService {
     }));
 
     return this.ingredientes;
-
   }
 
   insertaIngrediente(nuevoIngrediente: Ingrediente) {
@@ -38,6 +40,7 @@ export class BbddService {
     }
   }
 
+  /* RECETAS */
   async insertaReceta(receta: Receta) {
     try {
       const doc = await addDoc(collection(this.firestore, "listaRecetas"), {
@@ -51,6 +54,23 @@ export class BbddService {
     } catch (error) {
       console.log('Error al agregar documento', error);
     }
+  }
+
+  
+
+  recetas: Receta[] = [];
+
+  async getRecetas() {
+    const querySnapshot = await getDocs(collection(this.firestore, "listaRecetas"));
+
+    this.recetas = querySnapshot.docs.map((doc) => ({
+      plato: doc.data()['plato'],
+      ingredientes: doc.data()['ingredientes'],
+      cantidad: doc.data()['cantidades'],
+      preparacion: doc.data()['preparacion']
+    }));
+
+    return this.recetas;
   }
 
 }

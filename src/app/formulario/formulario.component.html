@@ -1,51 +1,73 @@
-<div class="container form">
-  <div style="text-align: center;" class="col">
-    <h1>{{title}}</h1>
-  </div>
-
-  <form>
-    <label for="plato">Nombre del Plato</label>
-    <input type="text" name="plato" id="plato" required [(ngModel)]="cuadroplato">
-    <br>
-    <br>
-    <div class="form-group">
-      <!-- ingredientes -->
-
-      <mat-form-field>
-        <mat-label>Ingredientes</mat-label>
-        <mat-select [formControl]="listaIngredientes" [(ngModel)]="ingredientesSelec" multiple>
-
-          @for (ing of ingredientes; track ing) {
-          <mat-option [value]="ing">{{ing.nombre}}</mat-option>
-          }
-
-        </mat-select>
-      </mat-form-field>
-
-      <!-- Ingredientes Nuevos -->
-
-      <div>
-        <input type="text" [(ngModel)]="cuadroNombre" placeholder="Añadir ingrediente..." name="nuevoIngrediente">
-        <button (click)="agregarIngrediente()">+</button>
-      </div>
-
-      <!-- CANTIDADES -->
-
-      <div *ngFor="let ing of ingredientesSelec">
-        <label [for]="ing.nombre"> {{ ing.nombre }} </label>
-        <input type="text" name="cantidad" [id]="ing.nombre" required [(ngModel)]="cantidades[ing.nombre]"
-          placeholder="Cantidad de {{ ing.nombre }}">
-      </div>
-
+<div class="container-nuevaRec">
+  <!-- FORMULARIO -->
+  <div class="container form">
+    <div style="text-align: center;" class="col">
+      <h1>{{title}}</h1>
     </div>
 
+    <form>
+      <label for="plato">Nombre del Plato</label>
+      <input type="text" name="plato" id="plato" required [(ngModel)]="cuadroplato">
+      <br>
+      <br>
+      <div class="form-group">
+        <!-- ingredientes -->
 
-    <br>
-    <br>
-    <label for="prep">Preparación:</label>
-    <textarea name="prep" id="prep" required [(ngModel)]="cuadropreparacion"></textarea>
+        <mat-form-field>
+          <mat-label>Ingredientes</mat-label>
 
-    <br><br>
-    <input type="submit" value="Añadir Receta" (click)="incluirReceta()">
-  </form>
+          <mat-select [formControl]="listaIngredientes" [(ngModel)]="ingredientesSelec" multiple>
+
+            @for (ing of ingredientes; track ing) {
+            <mat-option [value]="ing">{{ing.nombre}}</mat-option>
+            }
+
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Ingredientes Nuevos -->
+
+        <div class="add">
+          <input type="text" [(ngModel)]="cuadroNombre" placeholder="Añadir ingrediente..." name="nuevoIngrediente">
+          <button (click)="agregarIngrediente()">+</button>
+        </div>
+
+        <!-- CANTIDADES -->
+
+        <div *ngFor="let ing of ingredientesSelec">
+          <label [for]="ing.nombre"> {{ ing.nombre }} </label>
+          <input type="text" name="cantidad" [id]="ing.nombre" required [(ngModel)]="cantidades[ing.nombre]"
+            placeholder="Cantidad de {{ ing.nombre }}">
+        </div>
+
+      </div>
+
+
+      <br>
+      <br>
+      <label for="prep">Preparación:</label>
+      <textarea name="prep" id="prep" required [(ngModel)]="cuadropreparacion"></textarea>
+
+      <br><br>
+      <input type="submit" value="Guardar Receta" (click)="incluirReceta()">
+    </form>
+
+
+  </div>
+
+  <!-- RECETA SEGÚN LA VAS ESCRIBIENDO -->
+
+  <div class="receta">
+    <h2>{{cuadroplato}}</h2>
+
+    <h3 *ngIf="ingredientesSelec.length>0">Ingredientes</h3>
+
+    <ul *ngFor="let ing of ingredientesSelec">
+      <li>{{ ing.nombre }} - {{cantidades[ing.nombre]}}</li>
+    </ul>
+
+    <p>{{cuadropreparacion}}</p>
+
+  </div>
+
 </div>

@@ -1,1 +1,15 @@
-<p>recetas works!</p>
+@for (rec of recetas; track $index) {
+<div class="receta">
+    <h1>{{rec.plato}}</h1>
+    <h2>Ingredientes</h2>
+
+    <ul>
+<!--         @for (ing of rec.cantidad; track $index) {
+        <li>{{ ing.nombre }} - </li>
+    } -->
+    </ul>
+
+    <p>{{rec.preparacion}}</p>
+    
+</div>
+}

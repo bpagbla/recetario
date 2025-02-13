@@ -1,28 +1,34 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Receta } from '../interfaces/receta';
 import { Firestore } from '@angular/fire/firestore';
+import { ActivatedRoute, Router } from '@angular/router';
 
+import { NotifService } from '../notif.service';
 import { BbddService } from '../bbdd.service';
 import { Ingrediente } from '../interfaces/ingrediente';
+import { Receta } from '../interfaces/receta';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NotifService } from '../notif.service';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+
+
 
 @Component({
   standalone: true,
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css'],
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule]
+  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule,
+    MatAutocompleteModule, MatSelectModule, FormsModule, ReactiveFormsModule]
 })
 
 export class FormularioComponent implements OnInit {
   nuevoIngrediente: string = '';
 
-  constructor(private bbddService: BbddService, private notifService: NotifService) { }
+  constructor(private bbddService: BbddService, private notifService: NotifService, private route: ActivatedRoute, private router: Router) { }
 
   title = 'Añadir una Receta nueva';
 
@@ -69,7 +75,11 @@ export class FormularioComponent implements OnInit {
     };
     this.recetas.push(nuevaReceta);
     this.bbddService.insertaReceta(nuevaReceta);
+    this.notifService.muestraMensaje("Se ha añadido la receta a la base de datos")
+    this.router.navigate([""]);
 
   }
+
+
 
 }

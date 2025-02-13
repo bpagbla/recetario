@@ -1,4 +1,12 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+
+/* INTERFACES */
+import { Receta } from '../interfaces/receta';
+
+/* SERVICIOS */
+import { NotifService } from '../notif.service';
+import { BbddService } from '../bbdd.service';
 
 @Component({
   selector: 'app-recetas',
@@ -7,5 +15,12 @@ import { Component } from '@angular/core';
   styleUrl: './recetas.component.css'
 })
 export class RecetasComponent {
+  constructor(private bbddService: BbddService, private notifService: NotifService) { }
+
+  recetas: Receta[] = [];
+
+  async ngOnInit() {
+    this.recetas = await this.bbddService.getRecetas();
+  }
 
 }
