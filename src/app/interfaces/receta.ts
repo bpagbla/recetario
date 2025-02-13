@@ -4,6 +4,8 @@ export interface Receta {
     id?: number;
     plato: string;
     ingredientes: Ingrediente[];
-    cantidad: string[];
+    cantidad: {
+        [key: string]: string
+    };
     preparacion: string;
 }

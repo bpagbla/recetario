@@ -28,7 +28,7 @@ export class FormularioComponent implements OnInit {
   cuadroplato: string = "";
   cuadrocantidad: string[] = [];
   cuadropreparacion: string = "";
-
+  cantidades: { [key: string]: string } = {};
   cuadroNombre: string = "";
 
   recetas: Receta[] = [];
@@ -36,8 +36,9 @@ export class FormularioComponent implements OnInit {
   ingredientesSelec: Ingrediente[] = [];
   listaIngredientes = new FormControl('');
 
-  async ngOnInit() {
 
+
+  async ngOnInit() {
     this.ingredientes = await this.bbddService.getIngredientes();
   }
 
@@ -46,6 +47,10 @@ export class FormularioComponent implements OnInit {
       let nuevoIngrediente: Ingrediente = {
         nombre: this.cuadroNombre.trim()
       };
+
+      // Inicializar cantidad para ese ingrediente
+      this.cantidades[this.cuadroNombre] = '';
+
       this.ingredientes.push(nuevoIngrediente);
       this.bbddService.insertaIngrediente(nuevoIngrediente);
     }
@@ -56,7 +61,7 @@ export class FormularioComponent implements OnInit {
     let nuevaReceta: Receta = {
       plato: this.cuadroplato,
       ingredientes: this.ingredientesSelec,
-      cantidad: this.cuadrocantidad,
+      cantidad: this.cantidades,
       preparacion: this.cuadropreparacion
     };
     this.recetas.push(nuevaReceta);

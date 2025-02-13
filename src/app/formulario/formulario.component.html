@@ -10,7 +10,7 @@
     <br>
     <div class="form-group">
       <!-- ingredientes -->
-<!--       <div *ngFor="let ing of ingredientes">
+      <!--       <div *ngFor="let ing of ingredientes">
         <input type="checkbox" [id]="ing.nombre" [value]="ing.nombre">
         <label [for]="ing.nombre"> {{ ing.nombre }}</label>
       </div> -->
@@ -20,24 +20,36 @@
         <mat-select [formControl]="listaIngredientes" [(ngModel)]="ingredientesSelec" multiple>
 
           @for (ing of ingredientes; track ing) {
-            <mat-option [value]="ing.nombre">{{ing.nombre}}</mat-option>
+          <mat-option [value]="ing">{{ing.nombre}}</mat-option>
           }
 
         </mat-select>
       </mat-form-field>
 
       <!-- Ingredientes Nuevos -->
-      
+
       <div>
-      <input type="text" [(ngModel)]="cuadroNombre" placeholder="Añadir ingrediente..." name="nuevoIngrediente">
-      <button (click)="agregarIngrediente()">+</button>
-    </div>
-     
-      <label for="cantidad">cantidad</label>
-      <input type="text" name="cantidad" id="cantidad" required [(ngModel)]="cuadrocantidad">
+        <input type="text" [(ngModel)]="cuadroNombre" placeholder="Añadir ingrediente..." name="nuevoIngrediente">
+        <button (click)="agregarIngrediente()">+</button>
+      </div>
+
+
+      <!-- CANTIDADES -->
+
+      <!--  <div *ngFor="let ing of ingredientesSelec">
+        <label [for]="ing.nombre"> {{ ing.nombre }}: </label>
+        <input type="text" name="cantidad" [id]="ing.nombre" required [(ngModel)]="cuadrocantidad"
+          placeholder="cantidad de {{ ing.nombre }}">
+      </div> -->
+
+      <div *ngFor="let ing of ingredientesSelec">
+        <label [for]="ing.nombre"> {{ ing.nombre }} </label>
+        <input type="text" name="cantidad" [id]="ing.nombre" required [(ngModel)]="cantidades[ing.nombre]"
+          placeholder="Cantidad de {{ ing.nombre }}">
+      </div>
+
     </div>
 
-    
 
     <br>
     <br>
