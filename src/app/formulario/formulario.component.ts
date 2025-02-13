@@ -1,21 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Receta } from '../interfaces/receta';
 import { Firestore } from '@angular/fire/firestore';
 
 import { BbddService } from '../bbdd.service';
 import { Ingrediente } from '../interfaces/ingrediente';
 
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 @Component({
-  standalone:true,
+  standalone: true,
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css'],
-  imports: [CommonModule, FormsModule,]
+  imports: [CommonModule, FormsModule, MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule]
 })
 
-export class FormularioComponent implements OnInit{
+export class FormularioComponent implements OnInit {
   nuevoIngrediente: string = '';
 
   constructor(private bbddService: BbddService) { }
@@ -23,7 +26,6 @@ export class FormularioComponent implements OnInit{
   title = 'Añadir una Receta nueva';
 
   cuadroplato: string = "";
-  cuadroingredientes: string[] = [];
   cuadrocantidad: string[] = [];
   cuadropreparacion: string = "";
 
@@ -31,15 +33,12 @@ export class FormularioComponent implements OnInit{
 
   recetas: Receta[] = [];
   ingredientes: Ingrediente[] = [];
+  ingredientesSelec: Ingrediente[] = [];
+  listaIngredientes = new FormControl('');
 
   async ngOnInit() {
-/*         // Llamada asíncrona para obtener los ingredientes
-        this.ingredientes = await this.bbddService.getIngredientes();
-        console.log(this.ingredientes); // Ver los ingredientes en consola */
 
-        /* const receive = await this.bbddService.getIngredientes(); */
-
-        this.ingredientes = await this.bbddService.getIngredientes();
+    this.ingredientes = await this.bbddService.getIngredientes();
   }
 
   agregarIngrediente() {
@@ -56,7 +55,7 @@ export class FormularioComponent implements OnInit{
   incluirReceta() {
     let nuevaReceta: Receta = {
       plato: this.cuadroplato,
-      ingredientes: this.cuadroingredientes,
+      ingredientes: this.ingredientesSelec,
       cantidad: this.cuadrocantidad,
       preparacion: this.cuadropreparacion
     };

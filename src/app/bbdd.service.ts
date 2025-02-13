@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, deleteDoc, doc, getDoc, getDocs, setDoc } from '@angular/fire/firestore';
+import { Firestore, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from '@angular/fire/firestore';
 
 import { Receta } from './interfaces/receta';
 import { Ingrediente } from './interfaces/ingrediente';
+import { addDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -18,15 +19,11 @@ export class BbddService {
 
     const querySnapshot = await getDocs(collection(this.firestore, "listaIngredientes"));
 
-   this.ingredientes = querySnapshot.docs.map((doc) => ({
+    this.ingredientes = querySnapshot.docs.map((doc) => ({
       nombre: doc.data()['nombre'],
     }));
 
     return this.ingredientes;
-
-    /*     querySnapshot.forEach((doc) =>{
-          console.log(doc.id, " => ", doc.data());
-        }) */
 
   }
 
@@ -41,14 +38,15 @@ export class BbddService {
     }
   }
 
-  insertaReceta(receta: Receta) {
+  async insertaReceta(receta: Receta) {
     try {
-      setDoc(doc(this.firestore, "listaRecetas", receta.plato), {
+      const doc = await addDoc(collection(this.firestore, "listaRecetas"), {
         plato: receta.plato,
         ingredientes: receta.ingredientes,
         cantidad: receta.cantidad,
         preparacion: receta.preparacion
       });
+      await updateDoc(doc, { id: doc.id });
       console.log('Dato OK');
     } catch (error) {
       console.log('Error al agregar documento', error);

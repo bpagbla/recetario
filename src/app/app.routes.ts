@@ -7,5 +7,4 @@ export const routes: Routes = [
     {path:'', component:HomeComponent},
     { path: 'receta/:id', component: RecetasComponent },
     { path: 'nueva-receta', component: FormularioComponent },
-    {path: 'receta', component: RecetasComponent}
 ];
