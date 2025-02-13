@@ -9,6 +9,7 @@ import { Ingrediente } from '../interfaces/ingrediente';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NotifService } from '../notif.service';
 
 @Component({
   standalone: true,
@@ -21,7 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class FormularioComponent implements OnInit {
   nuevoIngrediente: string = '';
 
-  constructor(private bbddService: BbddService) { }
+  constructor(private bbddService: BbddService, private notifService: NotifService) { }
 
   title = 'Añadir una Receta nueva';
 
@@ -35,7 +36,6 @@ export class FormularioComponent implements OnInit {
   ingredientes: Ingrediente[] = [];
   ingredientesSelec: Ingrediente[] = [];
   listaIngredientes = new FormControl('');
-
 
 
   async ngOnInit() {
@@ -55,6 +55,7 @@ export class FormularioComponent implements OnInit {
 
       this.ingredientes.push(nuevoIngrediente);
       this.bbddService.insertaIngrediente(nuevoIngrediente);
+      this.notifService.muestraMensaje("Ingrediente añadido a la base de datos")
     }
 
   }
