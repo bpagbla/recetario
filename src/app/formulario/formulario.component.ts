@@ -33,13 +33,19 @@ export class FormularioComponent implements OnInit{
   ingredientes: Ingrediente[] = [];
 
   async ngOnInit() {
-    this.ingredientes = await this.bbddService.getIngredientes(); // Cargar los ingredientes al iniciar
+/*         // Llamada asíncrona para obtener los ingredientes
+        this.ingredientes = await this.bbddService.getIngredientes();
+        console.log(this.ingredientes); // Ver los ingredientes en consola */
+
+        /* const receive = await this.bbddService.getIngredientes(); */
+
+        this.ingredientes = await this.bbddService.getIngredientes();
   }
 
   agregarIngrediente() {
-    if (this.nuevoIngrediente.trim()) {
+    if (this.cuadroNombre.trim()) {
       let nuevoIngrediente: Ingrediente = {
-        nombre: this.cuadroNombre
+        nombre: this.cuadroNombre.trim()
       };
       this.ingredientes.push(nuevoIngrediente);
       this.bbddService.insertaIngrediente(nuevoIngrediente);
@@ -47,7 +53,7 @@ export class FormularioComponent implements OnInit{
 
   }
 
-  async incluirReceta() {
+  incluirReceta() {
     let nuevaReceta: Receta = {
       plato: this.cuadroplato,
       ingredientes: this.cuadroingredientes,
