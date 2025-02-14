@@ -62,8 +62,9 @@
 
     <h3 *ngIf="ingredientesSelec.length>0">Ingredientes</h3>
 
-    <ul *ngFor="let ing of ingredientesSelec">
-      <li>{{ ing.nombre }} - {{cantidades[ing.nombre]}}</li>
+    <ul>
+      <li>@for (ing of ingredientesSelec; track $index) {
+        {{ ing.nombre }} - {{cantidades[ing.nombre]}}}</li>
     </ul>
 
     <p>{{cuadropreparacion}}</p>
