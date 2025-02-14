@@ -66,7 +66,7 @@ export class BbddService {
     this.recetas = querySnapshot.docs.map((doc) => ({
       plato: doc.data()['plato'],
       ingredientes: doc.data()['ingredientes'],
-      cantidad: doc.data()['cantidades'],
+      cantidad: doc.data()['cantidad'],
       preparacion: doc.data()['preparacion']
     }));
 

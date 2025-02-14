@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 /* INTERFACES */
@@ -10,7 +10,7 @@ import { BbddService } from '../bbdd.service';
 
 @Component({
   selector: 'app-recetas',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './recetas.component.html',
   styleUrl: './recetas.component.css'
 })
@@ -21,6 +21,9 @@ export class RecetasComponent {
 
   async ngOnInit() {
     this.recetas = await this.bbddService.getRecetas();
+    
+    console.log('Recetas cargadas:', this.recetas);
+
   }
 
 }

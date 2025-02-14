@@ -3,13 +3,14 @@
     <h1>{{rec.plato}}</h1>
     <h2>Ingredientes</h2>
 
-    <ul>
-<!--         @for (ing of rec.cantidad; track $index) {
-        <li>{{ ing.nombre }} - </li>
-    } -->
-    </ul>
 
-    <p>{{rec.preparacion}}</p>
+    <ul *ngIf="recetas.length > 0">
+            @for (ing of rec.ingredientes; track $index) {
+                <li>{{ ing.nombre }} - {{ rec.cantidad[ing.nombre] }}</li>
+            }
+    </ul>
     
+    <p>{{rec.preparacion}}</p>
+
 </div>
-}
+}   
