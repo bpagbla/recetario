@@ -1,16 +1,26 @@
-@for (rec of recetas; track $index) {
-<div class="receta">
-    <h1>{{rec.plato}}</h1>
-    <h2>Ingredientes</h2>
+<div class="content">
 
+    <!-- BUSQUEDA POR INGREDIENTES -->
 
-    <ul *ngIf="recetas.length > 0">
-            @for (ing of rec.ingredientes; track $index) {
+    <!-- RECETAS -->
+    @for (rec of recetas; track $index) {
+    <div class="img-tape img-tape--1">
+        <div class="receta">
+            <h1>{{rec.plato}}</h1>
+            <h2>Ingredientes</h2>
+
+            <ul *ngIf="recetas.length > 0">
+                @for (ing of rec.ingredientes; track $index) {
                 <li>{{ ing.nombre }} - {{ rec.cantidad[ing.nombre] }}</li>
-            }
-    </ul>
-    
-    <p>{{rec.preparacion}}</p>
+                }
+            </ul>
+
+            <p>{{rec.preparacion}}</p>
+
+            <a routerLink="receta/:{{rec.id}}" routerLinkActive="router-link-active" class="btn btn-primary" >Leer Más</a>
+
+        </div>
+    </div>
+    }
 
 </div>
-}   

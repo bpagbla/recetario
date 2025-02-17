@@ -7,10 +7,12 @@ import { Receta } from '../interfaces/receta';
 /* SERVICIOS */
 import { NotifService } from '../notif.service';
 import { BbddService } from '../bbdd.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-recetas',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './recetas.component.html',
   styleUrl: './recetas.component.css'
 })

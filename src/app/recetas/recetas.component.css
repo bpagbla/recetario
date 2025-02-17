@@ -1,0 +1,48 @@
+.content {
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 1rem;
+    justify-content: space-evenly;
+}
+
+.receta {
+    padding: 2rem;
+    background-color: rgb(237, 237, 237);
+    -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+.img-tape {
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    margin: 20px auto 10px;
+
+    &:before,
+    &:after {
+        background: rgba(255, 255, 235, .6);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        content: "";
+        display: block;
+        height: 30px;
+        position: absolute;
+        margin: auto;
+        width: 100px;
+    }
+
+}
+
+.img-tape--1 {
+    &:before {
+        left: 50%;
+        margin-left: -50px;
+        top: -10px;
+    }
+
+    &:after {
+        display: none;
+    }
+}
