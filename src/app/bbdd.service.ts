@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, collection, deleteDoc, doc, docData, getDoc, getDocs, setDoc, updateDoc } from '@angular/fire/firestore';
 
 import { Receta } from './interfaces/receta';
 import { Ingrediente } from './interfaces/ingrediente';
 
 import { addDoc } from 'firebase/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +57,7 @@ export class BbddService {
     }
   }
 
-  
+
 
   recetas: Receta[] = [];
 
@@ -64,6 +65,7 @@ export class BbddService {
     const querySnapshot = await getDocs(collection(this.firestore, "listaRecetas"));
 
     this.recetas = querySnapshot.docs.map((doc) => ({
+      id: doc.data()['id'],
       plato: doc.data()['plato'],
       ingredientes: doc.data()['ingredientes'],
       cantidad: doc.data()['cantidad'],
@@ -71,6 +73,32 @@ export class BbddService {
     }));
 
     return this.recetas;
+  }
+
+  async getReceta(id: string): Promise<any> {
+/*     const documentoRef = doc(this.firestore, "listaRecetas", id);
+    const documentoSnapshot = await getDoc(documentoRef);
+
+    if (documentoSnapshot.exists()) {
+      return { id: documentoSnapshot.id, ...documentoSnapshot.data() };
+    } else {
+      return null;
+    }
+  } */
+
+    try {
+      const documentoRef = doc(this.firestore, "listaRecetas", id);
+      const documentoSnapshot = await getDoc(documentoRef);
+      if (documentoSnapshot.exists()) {
+        return { id: documentoSnapshot.id, ...documentoSnapshot.data() };
+      } else {
+        console.error("No existe la receta con ese ID");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error al obtener la receta:", error);
+      return null;
+    }
   }
 
 }

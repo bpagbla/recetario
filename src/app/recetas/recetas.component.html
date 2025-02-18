@@ -1,23 +1,29 @@
 <div class="content">
 
     <!-- BUSQUEDA POR INGREDIENTES -->
+<!--     <div>
+        <label *ngFor="let ingrediente of ingredientes">
+            <input type="checkbox" (ngModel)="ingredientesSelec" (change)="filtrarRecetas()" />
+            {{ ingrediente.nombre }}
+        </label>
+    </div> -->
 
     <!-- RECETAS -->
     @for (rec of recetas; track $index) {
     <div class="img-tape img-tape--1">
         <div class="receta">
             <h1>{{rec.plato}}</h1>
-            <h2>Ingredientes</h2>
+            <h3>Ingredientes</h3>
 
             <ul *ngIf="recetas.length > 0">
                 @for (ing of rec.ingredientes; track $index) {
                 <li>{{ ing.nombre }} - {{ rec.cantidad[ing.nombre] }}</li>
                 }
             </ul>
+            <h3>Preparación</h3>
+            <p class="preparacion">{{rec.preparacion}}</p>
 
-            <p>{{rec.preparacion}}</p>
-
-            <a routerLink="receta/:{{rec.id}}" routerLinkActive="router-link-active" class="btn btn-primary" >Leer Más</a>
+            <a [routerLink]="['/receta', rec.id]" class="btn boton-mas">Leer Más</a>
 
         </div>
     </div>

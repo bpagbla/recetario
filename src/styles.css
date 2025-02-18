@@ -6,7 +6,7 @@ h1 {
     font-style: normal;
 }
 
-p {
+* {
     font-family: "Inconsolata", serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -18,10 +18,23 @@ p {
 html,
 body {
     height: 100%;
+
 }
+
 
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
+ul {
+    list-style: none;
+    text-align: left;
+}
+
+ul li:before {
+    content: '✓';
+    color: red;
+    padding-right: 1rem;
+}

@@ -1,0 +1,13 @@
+<div *ngIf="receta">
+    <h1>{{ receta.plato }}</h1>
+  
+    <h2>Ingredientes:</h2>
+    <ul>
+      <li *ngFor="let ing of receta.ingredientes">
+        {{ ing.nombre }} - {{ receta.cantidad[ing.nombre] }}
+      </li>
+    </ul>
+  
+    <h3>Preparación:</h3>
+    <p>{{ receta.preparacion }}</p>
+  </div>

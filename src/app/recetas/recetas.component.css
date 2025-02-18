@@ -1,17 +1,48 @@
+:host {
+    display: block;
+    background-image: url("/corkbg.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 90%;
+}
+
 .content {
-    margin: 2rem;
     display: grid;
     grid-template-columns: auto auto auto auto;
     gap: 1rem;
     justify-content: space-evenly;
+    align-items: center;
+    padding: 3rem;
 }
 
 .receta {
-    padding: 2rem;
-    background-color: rgb(237, 237, 237);
+    padding: 1.5rem;
+    background-color: #fffa90;
+
     -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
     box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
+
+    transform: rotate(-2deg);
+    width: 100%;
+    min-height: 300px;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+.receta:hover {
+    transform: rotate(2deg);
+}
+
+
+.preparacion {
+    max-height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 
@@ -21,21 +52,24 @@
     display: inline-block;
     margin: 20px auto 10px;
 
+
     &:before,
     &:after {
         background: rgba(255, 255, 235, .6);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.114);
         content: "";
         display: block;
         height: 30px;
         position: absolute;
         margin: auto;
         width: 100px;
+        z-index: 3;
     }
 
 }
 
 .img-tape--1 {
+
     &:before {
         left: 50%;
         margin-left: -50px;
@@ -44,5 +78,12 @@
 
     &:after {
         display: none;
+    }
+}
+
+@media only screen and (max-width : 750px) and (max-height : 1334px) {
+    .content {
+        grid-template-columns: auto;
+
     }
 }
