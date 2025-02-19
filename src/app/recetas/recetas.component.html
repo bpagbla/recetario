@@ -1,15 +1,18 @@
 <div class="content">
 
     <!-- BUSQUEDA POR INGREDIENTES -->
-<!--     <div>
-        <label *ngFor="let ingrediente of ingredientes">
-            <input type="checkbox" (ngModel)="ingredientesSelec" (change)="filtrarRecetas()" />
-            {{ ingrediente.nombre }}
-        </label>
-    </div> -->
+
+    <mat-form-field>
+        <mat-label>Ingredientes</mat-label>
+        <mat-select [(ngModel)]="ingredientesSelec" multiple (selectionChange)="filtrarRecetas()">
+          @for (ing of ingredientes; track $index) {
+            <mat-option [value]="ing">{{ ing.nombre }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
 
     <!-- RECETAS -->
-    @for (rec of recetas; track $index) {
+    @for (rec of recetasFiltradas; track rec.id) {
     <div class="img-tape img-tape--1">
         <div class="receta">
             <h1>{{rec.plato}}</h1>

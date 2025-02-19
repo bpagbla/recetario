@@ -20,7 +20,7 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css'],
   imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule,
-    MatAutocompleteModule, MatSelectModule, FormsModule, ReactiveFormsModule]
+    MatAutocompleteModule, MatSelectModule, ReactiveFormsModule]
 })
 
 export class FormularioComponent implements OnInit {
