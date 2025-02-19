@@ -1,13 +1,16 @@
-<div *ngIf="receta">
+<div *ngIf="receta" class="content">
+  <div class="receta">
     <h1>{{ receta.plato }}</h1>
-  
+
     <h2>Ingredientes:</h2>
-    <ul>
-      <li *ngFor="let ing of receta.ingredientes">
-        {{ ing.nombre }} - {{ receta.cantidad[ing.nombre] }}
-      </li>
-    </ul>
-  
+    <div class="ing">
+      <ul>
+        <li *ngFor="let ing of receta.ingredientes">
+          {{ ing.nombre }} - {{ receta.cantidad[ing.nombre] }}
+        </li>
+      </ul>
+    </div>
     <h3>Preparación:</h3>
     <p>{{ receta.preparacion }}</p>
   </div>
+</div>

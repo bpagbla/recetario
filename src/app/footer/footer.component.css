@@ -5,6 +5,7 @@
     text-align: center; /* Centrado */
     padding: 20px 0; /* Espaciado */
     font-size: 14px; /* Tamaño de fuente pequeño */
+    position: relative;
   }
   
   .footer p {

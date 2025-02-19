@@ -3,7 +3,7 @@
     background-image: url("/corkbg.jpg");
     background-size: cover;
     background-position: center;
-    height: 90%;
+    min-height: 88vh;
 }
 
 .content {

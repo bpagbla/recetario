@@ -1,0 +1,51 @@
+:host {
+    display: block;
+    background-image: url("/corkbg.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 88vh;
+}
+
+.content {
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.receta {
+    padding: 3rem;
+    background-color: #fffa90;
+
+    -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
+
+
+    width: 70%;
+    min-height: 300px;
+    border-radius: 5px;
+    z-index: 2;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    text-align: center;
+}
+
+@media only screen and (max-width : 750px) and (max-height : 1334px) {
+    .receta {
+        width: 90%;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+}
+
+@media only screen and (max-width : 480px) and (max-height : 1334px) {
+
+    ul {
+        text-align: left;
+    }
+
+}
