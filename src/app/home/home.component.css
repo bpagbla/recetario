@@ -1,13 +1,13 @@
-.principal{
-    background-image: url("/corkbg.jpg");
+.principal {
+    background-image: url("/mesa.jpg");
     width: 100%;
     height: 90vh;
     display: grid;
-justify-content: center;
-align-items: center;
+    justify-content: center;
+    align-items: center;
 }
 
-.postit{
+.postit {
     padding: 3rem;
     background-color: #fffa90;
 
