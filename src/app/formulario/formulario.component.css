@@ -19,6 +19,7 @@
 .cantidad {
     display: grid;
     grid-template-columns: auto auto;
+    gap: 1rem;
 }
 
 .formulario {
@@ -63,7 +64,7 @@ textarea {
     box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
 
     transform: rotate(-2deg);
-    min-width: 40rem;
+    min-width: 30rem;
     min-height: 300px;
     border-radius: 5px;
     z-index: 2;
@@ -73,6 +74,29 @@ textarea {
 ul {
     list-style: none;
     text-align: center;
+}
+
+@media only screen and (max-width : 1000px)  {
+    .content {
+        grid-template-columns: auto;
+
+    }
+
+    .receta{
+        min-width: 0;
+    }
+    .cantidad{
+        grid-template-columns: auto;
+    }
+}
+
+@media only screen and (max-width : 500px) and (max-height : 1334px) {
+
+    .finForm{
+        display: grid;
+        grid-template-columns: auto;
+        align-items: end;
+    }
 }
 
 @media only screen and (max-width : 480px) and (max-height : 1334px) {

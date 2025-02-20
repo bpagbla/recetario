@@ -42,26 +42,28 @@
             <button (click)="agregarIngrediente()" class="btn btn-primary" [disabled]="cuadroNombre.invalid">+</button>
           </div>
           <br>
-
+<hr>
+<p>Cantidades:</p>
           <!-- CANTIDADES -->
+          <div class="cantidad">
+            <div *ngFor="let ing of ingredientesSelec">
+              <div class="form-floating">
+                <input type="text" [id]="ing.nombre" [formControl]="cantidades[ing.nombre]"
+                  placeholder="Cantidad de {{ ing.nombre }}" required class="form-control"
+                  [ngClass]="{'input-error': cantidades[ing.nombre].invalid && cantidades[ing.nombre].touched}">
+                <label [for]="ing.nombre"> {{ ing.nombre }} </label>
+              </div>
+              <div class="alert alert-danger mt-2"
+                [hidden]="cantidades[ing.nombre].valid || cantidades[ing.nombre].pristine">
+                La cantidad de {{ ing.nombre }} es requerida.
+              </div>
+            </div>
 
-          <div *ngFor="let ing of ingredientesSelec" class="cantidad">
-            <div class="form-floating">
-              <input type="text" [id]="ing.nombre" [formControl]="cantidades[ing.nombre]"
-                placeholder="Cantidad de {{ ing.nombre }}" required class="form-control"
-                [ngClass]="{'input-error': cantidades[ing.nombre].invalid && cantidades[ing.nombre].touched}">
-              <label [for]="ing.nombre"> Cantidad de {{ ing.nombre }} </label>
-            </div>
-            <div class="alert alert-danger mt-2"
-              [hidden]="cantidades[ing.nombre].valid || cantidades[ing.nombre].pristine">
-              La cantidad de {{ ing.nombre }} es requerida.
-            </div>
           </div>
-
         </div>
 
-
         <br>
+        <hr>
         <br>
         <div class="form-floating">
           <textarea class="form-control" name="prep" id="prep" [formControl]="cuadropreparacion" required
@@ -76,7 +78,8 @@
           <input type="submit" value="Guardar Receta" title="Rellena todos los campos" class="btn btn-primary"
             [disabled]="listaIngredientes.invalid || cuadroplato.invalid || cuadropreparacion.invalid"
             (click)="incluirReceta()">
-          <p [hidden]="listaIngredientes.valid && cuadroplato.valid && cuadropreparacion.valid" class="text-danger aviso">
+          <p [hidden]="listaIngredientes.valid && cuadroplato.valid && cuadropreparacion.valid"
+            class="text-danger aviso">
             Rellena todos los campos</p>
         </div>
       </form>
