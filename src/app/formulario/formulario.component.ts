@@ -79,7 +79,15 @@ export class FormularioComponent implements OnInit {
       this.cuadroNombre.reset();
 
       this.ingredientes.push(nuevoIngrediente);
+      this.ingredientesSelec.push(nuevoIngrediente);
+
+      // Crear un nuevo FormControl para la cantidad del nuevo ingrediente
+      this.cantidades[nuevoIngrediente.nombre] = new FormControl('', Validators.required);
+  
+      // Actualizar el valor del mat-select para reflejar la selección
+      this.listaIngredientes.setValue(this.ingredientesSelec);
       this.bbddService.insertaIngrediente(nuevoIngrediente);
+      this.cantidades[nuevoIngrediente.nombre] = new FormControl('', Validators.required);
       this.notifService.muestraMensaje("Ingrediente añadido a la base de datos")
     } else {
       this.notifService.muestraMensaje("Por favor, escribe el nombre de un ingrediente nuevo");
@@ -135,7 +143,7 @@ export class FormularioComponent implements OnInit {
       this.recetas.push(nuevaReceta);
       this.bbddService.insertaReceta(nuevaReceta);
       this.notifService.muestraMensaje("Se ha añadido la receta a la base de datos");
-      this.router.navigate([""]);
+      /* this.router.navigate([""]); */
     }
   }
 

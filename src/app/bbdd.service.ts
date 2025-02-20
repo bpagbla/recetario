@@ -6,6 +6,7 @@ import { Ingrediente } from './interfaces/ingrediente';
 
 import { addDoc } from 'firebase/firestore';
 import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import { Observable } from 'rxjs';
 export class BbddService {
 
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore, private route: ActivatedRoute, private router: Router) { }
 
   /* INGREDIENTES */
   ingredientes: Ingrediente[] = [];
@@ -52,6 +53,7 @@ export class BbddService {
       });
       await updateDoc(doc, { id: doc.id });
       console.log('Dato OK');
+      this.router.navigate([""]);
     } catch (error) {
       console.log('Error al agregar documento', error);
     }
@@ -76,15 +78,6 @@ export class BbddService {
   }
 
   async getReceta(id: string): Promise<any> {
-/*     const documentoRef = doc(this.firestore, "listaRecetas", id);
-    const documentoSnapshot = await getDoc(documentoRef);
-
-    if (documentoSnapshot.exists()) {
-      return { id: documentoSnapshot.id, ...documentoSnapshot.data() };
-    } else {
-      return null;
-    }
-  } */
 
     try {
       const documentoRef = doc(this.firestore, "listaRecetas", id);

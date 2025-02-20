@@ -9,5 +9,4 @@ export interface Receta {
         [key: string]: string
     };
     preparacion: string;
-    img?: string;
 }
