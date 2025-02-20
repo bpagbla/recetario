@@ -16,6 +16,10 @@
     white-space: pre-wrap;
 }
 
+.alert{
+    margin:0 !important;
+}
+
 .cantidad {
     display: grid;
     grid-template-columns: auto auto;

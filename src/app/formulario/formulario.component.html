@@ -46,7 +46,7 @@
 <p>Cantidades:</p>
           <!-- CANTIDADES -->
           <div class="cantidad">
-            <div *ngFor="let ing of ingredientesSelec">
+            <!-- <div *ngFor="let ing of ingredientesSelec">
               <div class="form-floating">
                 <input type="text" [id]="ing.nombre" [formControl]="cantidades[ing.nombre]"
                   placeholder="Cantidad de {{ ing.nombre }}" required class="form-control"
@@ -57,7 +57,20 @@
                 [hidden]="cantidades[ing.nombre].valid || cantidades[ing.nombre].pristine">
                 La cantidad de {{ ing.nombre }} es requerida.
               </div>
-            </div>
+            </div> -->
+
+            <ng-container *ngFor="let ing of ingredientesSelec">
+              <div class="form-floating">
+                <input type="text" [id]="ing.nombre" [formControl]="cantidades[ing.nombre]"
+                  placeholder="Cantidad de {{ ing.nombre }}" required class="form-control"
+                  [ngClass]="{'input-error': cantidades[ing.nombre].invalid && cantidades[ing.nombre].touched}">
+                <label [for]="ing.nombre"> {{ ing.nombre }} </label>
+              </div>
+              <div class="alert alert-danger mt-2"
+                [hidden]="cantidades[ing.nombre].valid || cantidades[ing.nombre].pristine">
+                La cantidad de {{ ing.nombre }} es requerida.
+              </div>
+            </ng-container>
 
           </div>
         </div>
