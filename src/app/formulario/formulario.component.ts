@@ -62,20 +62,24 @@ export class FormularioComponent implements OnInit {
 
   agregarIngrediente() {
     if (this.cuadroNombre.value != null && this.cuadroNombre.valid) {
-
+      let nuevoIngrediente: Ingrediente = {
+        nombre: this.cuadroNombre.value
+      }
       for (const ing of this.ingredientes) {
         if (ing.nombre.toLowerCase() === this.cuadroNombre.value.toLowerCase()) {
           console.log(ing.nombre.toLowerCase());
           console.log(this.cuadroNombre.value.toLowerCase());
-          this.notifService.muestraMensaje("Este ingrediente ya existe");
+          this.ingredientesSelec.push(nuevoIngrediente);
+
+          this.cantidades[nuevoIngrediente.nombre] = new FormControl('', Validators.required);
+          this.listaIngredientes.setValue(this.ingredientesSelec);
+
           this.cuadroNombre.reset();
           return;
         }
       }
 
-      let nuevoIngrediente: Ingrediente = {
-        nombre: this.cuadroNombre.value
-      }
+
       this.cuadroNombre.reset();
 
       this.ingredientes.push(nuevoIngrediente);
@@ -83,7 +87,7 @@ export class FormularioComponent implements OnInit {
 
       // Crear un nuevo FormControl para la cantidad del nuevo ingrediente
       this.cantidades[nuevoIngrediente.nombre] = new FormControl('', Validators.required);
-  
+
       // Actualizar el valor del mat-select para reflejar la selección
       this.listaIngredientes.setValue(this.ingredientesSelec);
       this.bbddService.insertaIngrediente(nuevoIngrediente);
