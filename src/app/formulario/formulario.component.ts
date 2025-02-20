@@ -49,7 +49,7 @@ export class FormularioComponent implements OnInit {
 
   async ngOnInit() {
     this.ingredientes = await this.bbddService.getIngredientes();
-    
+
   }
 
   getCantidadesValues(): { [key: string]: string } {
@@ -61,30 +61,44 @@ export class FormularioComponent implements OnInit {
   }
 
   agregarIngrediente() {
-    if (this.cuadroNombre.value != null) {
+    if (this.cuadroNombre.value != null && this.cuadroNombre.valid) {
+
+      for (const ing of this.ingredientes) {
+        if (ing.nombre.toLowerCase() === this.cuadroNombre.value.toLowerCase()) {
+          console.log(ing.nombre.toLowerCase());
+          console.log(this.cuadroNombre.value.toLowerCase());
+          this.notifService.muestraMensaje("Este ingrediente ya existe");
+          this.cuadroNombre.reset();
+          return;
+        }
+      }
+
       let nuevoIngrediente: Ingrediente = {
         nombre: this.cuadroNombre.value
-      };
-
+      }
+      this.cuadroNombre.reset();
 
       this.ingredientes.push(nuevoIngrediente);
       this.bbddService.insertaIngrediente(nuevoIngrediente);
       this.notifService.muestraMensaje("Ingrediente añadido a la base de datos")
+    } else {
+      this.notifService.muestraMensaje("Por favor, escribe el nombre de un ingrediente nuevo");
+      return;
     }
 
   }
 
   actualizarSeleccionIngredientes(event: any) {
     this.ingredientesSelec = event.value;
-  
+
     // Limpiar el objeto de cantidades
     this.cantidades = {};
-  
+
     // Crear un FormControl para cada ingrediente seleccionado
     this.ingredientesSelec.forEach(ing => {
       this.cantidades[ing.nombre] = new FormControl('', Validators.required);
     });
-  
+
     console.log("Ingredientes seleccionados:", this.ingredientesSelec);
     console.log("Controles de cantidad:", this.cantidades);
   }
@@ -94,7 +108,7 @@ export class FormularioComponent implements OnInit {
       this.notifService.muestraMensaje("Por favor, selecciona al menos un ingrediente.");
       return;
     }
-  
+
     // Verificar si todas las cantidades están llenas
     let cantidadValida = true;
     for (const ing of this.ingredientesSelec) {
@@ -105,12 +119,12 @@ export class FormularioComponent implements OnInit {
         }
       }
     }
-  
+
     if (!cantidadValida) {
       this.notifService.muestraMensaje("Por favor, completa todas las cantidades de los ingredientes.");
       return;
     }
-  
+
     if (this.cuadroplato.value != null && this.cuadropreparacion.value != null) {
       let nuevaReceta: Receta = {
         plato: this.cuadroplato.value,

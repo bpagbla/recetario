@@ -1,16 +1,84 @@
-
+:host {
+    display: block;
+    background-image: url("/mesa.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 88vh;
+}
 
 .content {
-    margin: 2rem;
+    padding: 2rem;
     display: grid;
     grid-template-columns: auto auto;
     gap: 1rem;
     justify-content: space-evenly;
     align-items: center;
+    white-space: pre-wrap;
 }
 
-h2{
+.cantidad {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.formulario {
+    padding: 2.5rem;
+    border-radius: 20px;
+    background: rgba(248, 249, 250, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(8.3px);
+    border: 1px solid rgba(248, 249, 250, 0.813);
+
+}
+.finForm{
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: end;
+}
+.aviso{
+    margin: 0;
+}
+h2 {
     font-family: "Homemade Apple", serif;
     font-weight: 400;
     font-style: normal;
+}
+
+.input-error {
+    border: 1px solid rgb(207, 9, 9);
+}
+
+textarea {
+    height: 100px;
+}
+
+.receta {
+    padding: 1.5rem;
+    background-color: #fffa90;
+
+    -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
+
+    transform: rotate(-2deg);
+    min-width: 40rem;
+    min-height: 300px;
+    border-radius: 5px;
+    z-index: 2;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    text-align: center;
+}
+
+@media only screen and (max-width : 480px) and (max-height : 1334px) {
+
+    ul {
+        text-align: left;
+    }
+
 }
