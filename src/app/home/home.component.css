@@ -16,9 +16,12 @@
     box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.15);
 
     transform: rotate(-2deg);
-    width: 100%;
+    width: 90%;
     min-height: 300px;
     border-radius: 5px;
     z-index: 2;
     text-align: center;
+
+    display: grid;
+    align-items: center;
 }
